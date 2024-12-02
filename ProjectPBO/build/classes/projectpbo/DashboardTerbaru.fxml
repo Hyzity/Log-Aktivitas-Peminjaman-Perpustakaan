@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.DatePicker?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectpbo.DashboardUserController" style="-fx-padding: 10;">
+    <BorderPane maxWidth="900" prefWidth="900" style="-fx-border-color: #CCCCCC; -fx-border-width: 1;">
+        <!-- Header -->
+        <top>
+            <VBox alignment="CENTER" style="-fx-background-color: #FF5722; -fx-padding: 10;">
+                <Label style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" text="PEMINJAMAN BUKU PERPUSTAKAAN" />
+                <TextField fx:id="searchField" promptText="Cari buku..." style="-fx-padding: 5; -fx-max-width: 400px;" />
+            </VBox>
+        </top>
+
+        <!-- Main Content -->
+        <center>
+            <ScrollPane fitToWidth="true" style="-fx-padding: 20;">
+                <VBox spacing="20" style="-fx-padding: 10;">
+                    <!-- Fiksi -->
+                    <VBox spacing="10">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Fiksi" />
+                        <TilePane hgap="10" vgap="10">
+                            <children>
+                                <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
+                                    <ImageView fitHeight="80" fitWidth="80">
+                                        <image>
+                                            <Image url="@/resources/fiction.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Label text="Buku Fiksi 1" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                                    <Button text="Pinjam" fx:id="borrowFiction1" style="-fx-background-color: #FF5722; -fx-text-fill: white;" />
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
+                                    <ImageView fitHeight="80" fitWidth="80">
+                                        <image>
+                                            <Image url="@/resources/fiction.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Label text="Buku Fiksi 2" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                                    <Button text="Pinjam" fx:id="borrowFiction2" style="-fx-background-color: #FF5722; -fx-text-fill: white;" />
+                                </VBox>
+                            </children>
+                        </TilePane>
+                    </VBox>
+
+                    <!-- Sains -->
+                    <VBox spacing="10">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Sains" />
+                        <TilePane hgap="10" vgap="10">
+                            <children>
+                                <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
+                                    <ImageView fitHeight="80" fitWidth="80">
+                                        <image>
+                                            <Image url="@/resources/science.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Label text="Buku Sains 1" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                                    <Button text="Pinjam" fx:id="borrowScience1" style="-fx-background-color: #FF5722; -fx-text-fill: white;" />
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
+                                    <ImageView fitHeight="80" fitWidth="80">
+                                        <image>
+                                            <Image url="@/resources/science.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Label text="Buku Sains 2" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                                    <Button text="Pinjam" fx:id="borrowScience2" style="-fx-background-color: #FF5722; -fx-text-fill: white;" />
+                                </VBox>
+                            </children>
+                        </TilePane>
+                    </VBox>
+
+                    <!-- Kategori lainnya mengikuti pola yang sama -->
+                </VBox>
+            </ScrollPane>
+        </center>
+
+        <!-- Footer -->
+        <bottom>
+            <HBox alignment="CENTER" style="-fx-background-color: #FF5722; -fx-padding: 10;">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: white;" text="Perpustakaan XYZ © 2024" />
+            </HBox>
+        </bottom>
+    </BorderPane>
+</StackPane>
