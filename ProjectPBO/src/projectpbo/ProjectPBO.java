@@ -2,10 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
  */
-package perpustakaan;
+package projectpbo;
 
-import java.sql.Connection;
-import java.sql.Statement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,18 +12,13 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author noelt
+ * @author Marselino
  */
-public class DetailBuku extends Application {
-    
-    Connection conn = null;
-    Statement statement = null;
+public class ProjectPBO extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("DetailBukudgnGambar.fxml"));
-        
-        conn = dbConnection.getDBConnection();
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
         

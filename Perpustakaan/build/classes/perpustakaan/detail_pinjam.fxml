@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="perpustakaan.Detail_pinjamController">
+<VBox prefHeight="400.0" prefWidth="300.0" spacing="10" style="-fx-background-color: F1F0E8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="perpustakaan.Detail_pinjamController">
    <HBox alignment="CENTER" prefHeight="31.0" prefWidth="300.0">
       <children>
           <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Detail Buku yang Dipinjam" />
@@ -54,7 +54,7 @@
    </VBox>
    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <Button mnemonicParsing="false" onAction="#closeWindow" text="Kembali">
+         <Button mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #F26963;" text="Kembali">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
@@ -62,7 +62,7 @@
                <Insets left="11.0" right="10.0" />
             </HBox.margin>
          </Button>
-          <Button text="OK">
+          <Button style="-fx-background-color: #09F400;" text="OK">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
