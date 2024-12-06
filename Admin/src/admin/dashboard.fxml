@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/download.jpg" />
+               </image>
+            </ImageView>
+            <Label alignment="TOP_CENTER" lineSpacing="15.0" text="Menu" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label text="Jenis Buku" />
+            <Label prefHeight="18.0" prefWidth="74.0" text="Kategori Buku" />
+            <Label prefHeight="18.0" prefWidth="74.0" text="Peminjaman" />
+            <Label />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <Label text="Daftar Statistik">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <VBox fx:id="jenisbuku" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-border-width: 2px; -fx-border-color: #3498db;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="jenisbukulabel2" text="Jenis Buku" textAlignment="CENTER" textFill="#34495e" textOverrun="WORD_ELLIPSIS">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-border-width: 2px; -fx-border-color: #2ecc71;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="kategoribukulabel3" text="Kategori Buku">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-border-width: 2px; -fx-border-color: #e74c3c;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="peminjamanlabel3" text="Peminjaman">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
