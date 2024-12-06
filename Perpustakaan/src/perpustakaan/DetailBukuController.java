@@ -49,7 +49,7 @@ public class DetailBukuController implements Initializable {
     private Button btnPinjam;
 
     private ObservableList<Buku> data = FXCollections.observableArrayList();
-    
+
     private Buku selectedBuku;
 
     @Override
@@ -59,28 +59,42 @@ public class DetailBukuController implements Initializable {
         penulis.setCellValueFactory(new PropertyValueFactory<>("penulis"));
         tahun_terbit.setCellValueFactory(new PropertyValueFactory<>("tahunTerbit"));
 
-        String id_kategori = "1";
+        String id_kategori = "2"; // ==================
+                                  // Value ini berdasarkan pass value dari halaman sebelumnya (Dari halaman Kategori)
+                                  // ==================
         setJudulKategori(id_kategori);
 
-        loadDataFromDatabase();
+        loadDataFromDatabase(id_kategori);
 
         tbvBuku.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedBuku = newValue;
         });
     }
 
-    private void loadDataFromDatabase() {
-        String query = "SELECT * FROM Buku";
-        try (Connection connection = dbConnection.getDBConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+    private void loadDataFromDatabase(String id_kategori) {
+        String query = "SELECT b.id_buku, b.nama_buku, b.penulis, b.tahun_terbit "
+                + "FROM Buku b "
+                + "JOIN kategori_buku k ON b.id_kategori = k.id_kategori "
+                + "WHERE b.id_kategori = ?";
+        data.clear(); // Bersihkan data lama
+        try (Connection connection = dbConnection.getDBConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-                data.add(new Buku(
-                        resultSet.getInt("id_buku"),
-                        resultSet.getString("nama_buku"),
-                        resultSet.getString("penulis"),
-                        resultSet.getInt("tahun_terbit")
-                ));
+            // Set parameter id_kategori
+            preparedStatement.setString(1, id_kategori);
+
+            // Eksekusi query
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    data.add(new Buku(
+                            resultSet.getInt("id_buku"),
+                            resultSet.getString("nama_buku"),
+                            resultSet.getString("penulis"),
+                            resultSet.getInt("tahun_terbit")
+                    ));
+                }
             }
+
+            // Set data ke TableView
             tbvBuku.setItems(data);
 
         } catch (SQLException e) {
