@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import main.MainMenuController;
 
 /**
  *
@@ -36,6 +37,7 @@ public class LogintesController {
 
     @FXML
     private Label label;
+
     @FXML
     void daftar(ActionEvent event) {
         try {
@@ -56,81 +58,108 @@ public class LogintesController {
     }
 
     // Handle login action
+//    @FXML
+//void handleLogin(ActionEvent event) throws IOException {
+//    String username = usernameField.getText().trim();
+//    String password = passwordField.getText().trim();
+//
+//    // Validasi jika field kosong
+//    if (username.isEmpty() || password.isEmpty()) {
+//        label.setText("*Username dan Password tidak boleh kosong!");
+//        return;
+//    }
+//
+//    // Logika khusus untuk admin
+//    if (username.equals("admin") && password.equals("admin123")) {
+//        label.setText("Login Berhasil sebagai Admin!");
+//
+//        // Navigasi ke halaman admin
+//        navigateToMainPage();
+//        return;
+//    }
+//
+//    // Cek username dan password dari database
+//    if (authenticateUser(username, password)) {
+//        label.setText("Login Berhasil!");
+//
+//        // Navigasi ke halaman utama
+//        navigateToMainPage();
+//    } else {
+//        label.setText("Username atau Password salah.");
+//    }
+//}
     @FXML
-void handleLogin(ActionEvent event) throws IOException {
-    String username = usernameField.getText().trim();
-    String password = passwordField.getText().trim();
+    void handleLogin(ActionEvent event) throws IOException {
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
 
-    // Validasi jika field kosong
-    if (username.isEmpty() || password.isEmpty()) {
-        label.setText("*Username dan Password tidak boleh kosong!");
-        return;
-    }
-
-    // Logika khusus untuk admin
-    if (username.equals("admin") && password.equals("admin123")) {
-        label.setText("Login Berhasil sebagai Admin!");
-
-        // Navigasi ke halaman admin
-        navigateToMainPage();
-        return;
-    }
-
-    // Cek username dan password dari database
-    if (authenticateUser(username, password)) {
-        label.setText("Login Berhasil!");
-
-        // Navigasi ke halaman utama
-        navigateToMainPage();
-    } else {
-        label.setText("Username atau Password salah.");
-    }
-}
-
-/**
- * Memeriksa username dan password di database.
- * 
- * @param username Username yang diinput
- * @param password Password yang diinput
- * @return true jika valid, false jika tidak valid
- */
-private boolean authenticateUser(String username, String password) {
-    String query = "SELECT COUNT(*) AS count FROM account WHERE nama_akun = ? AND password_akun = ?";
-
-    try (Connection connection = dbConnection.getDBConnection();
-         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-        
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, password);
-
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
-            if (resultSet.next()) {
-                int count = resultSet.getInt("count");
-                return count > 0; // Jika ada hasil, login valid
-            }
+        // Validasi jika field kosong
+        if (username.isEmpty() || password.isEmpty()) {
+            label.setText("*Username dan Password tidak boleh kosong!");
+            return;
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        label.setText("Terjadi kesalahan saat menghubungkan ke database.");
+
+        // Logika khusus untuk admin
+        if (username.equals("admin") && password.equals("admin123")) {
+            label.setText("Login Berhasil sebagai Admin!");
+
+            // Navigasi ke halaman admin
+            navigateToMainPage(-1); // Kirim -1 sebagai ID untuk admin
+            return;
+        }
+
+        // Cek username dan password dari database
+        int idAkun = authenticateUser(username, password);
+        if (idAkun != -1) {
+            label.setText("Login Berhasil!");
+
+            // Navigasi ke halaman utama dengan id_akun
+            navigateToMainPage(idAkun);
+        } else {
+            label.setText("Username atau Password salah.");
+        }
     }
 
-    return false; // Login tidak valid
-}
+    /**
+     * Memeriksa username dan password di database.
+     *
+     * @param username Username yang diinput
+     * @param password Password yang diinput
+     * @return true jika valid, false jika tidak valid
+     */
+    private int authenticateUser(String username, String password) {
+        String query = "SELECT id_akun FROM account WHERE nama_akun = ? AND password_akun = ?";
+        try (Connection connection = dbConnection.getDBConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id_akun");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Jika login gagal
+    }
 
     // Method to navigate to the main page after login
-    private void navigateToMainPage() throws IOException {
-        // Muat halaman utama (ganti dengan file FXML halaman utama Anda)
-        Parent mainPage = FXMLLoader.load(getClass().getResource("/main/mainMenu.fxml"));
+    private void navigateToMainPage(int idAkun) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/mainMenu.fxml"));
+        Parent mainPage = loader.load();
 
-        // Ambil stage saat ini
+        // Ambil controller dari halaman berikutnya
+        MainMenuController controller = loader.getController();
+
+        // Kirimkan id_akun ke halaman berikutnya
+        controller.setIdAkun(idAkun);
+
+        // Tampilkan halaman utama
         Stage stage = (Stage) usernameField.getScene().getWindow();
-
-        // Buat scene baru untuk halaman utama
-        Scene mainScene = new Scene(mainPage);
-
-        // Set scene baru ke stage
-        stage.setScene(mainScene);
-        stage.setTitle("Halaman Utama"); // Set judul stage
+        stage.setScene(new Scene(mainPage));
         stage.show();
     }
+
 }

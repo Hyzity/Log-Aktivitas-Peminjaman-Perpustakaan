@@ -39,6 +39,15 @@ public class MainMenuController {
         loadCategories();
     }
 
+    private int idAkun;
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
+
+        // Gunakan idAkun untuk mengambil data pengguna atau menyesuaikan tampilan
+        System.out.println("ID Akun yang login: " + idAkun);
+    }
+
     private void loadCategories() {
         String query = "SELECT id_kategori, nama_kategori FROM kategori_buku";
         try (Connection connection = dbConnection.getDBConnection(); PreparedStatement statement = connection.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
@@ -67,21 +76,22 @@ public class MainMenuController {
 
         Button button = new Button("Lihat Buku");
         button.setStyle("-fx-background-color: #FF5722; -fx-text-fill: white;");
-        button.setOnAction(event -> openDetailPage(idKategori));
+        button.setOnAction(event -> openDetailPage(idKategori, idAkun));
 
         card.getChildren().addAll(label, button);
         return card;
     }
 
-    private void openDetailPage(int idKategori) {
+    private void openDetailPage(int idKategori, int idAkun) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/perpustakaan/DetailBukudgnGambar.fxml"));
             Stage stage = (Stage) tilePane.getScene().getWindow();
             Scene scene = new Scene(loader.load());
 
-            // Mengirimkan idKategori ke controller detail
+            // Mengirimkan idKategori dan idAkun ke controller detail
             DetailBukudgnGambarController controller = loader.getController();
             controller.setKategoriId(idKategori);
+            controller.setIdAkun(idAkun);
 
             stage.setScene(scene);
             stage.show();
@@ -89,4 +99,5 @@ public class MainMenuController {
             e.printStackTrace();
         }
     }
+
 }

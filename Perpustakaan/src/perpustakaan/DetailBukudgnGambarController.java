@@ -38,6 +38,14 @@ public class DetailBukudgnGambarController {
     private int kategoriId;
 
     private Connection connection;
+    private int idAkun;
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
+
+        // Opsional: Lakukan sesuatu dengan idAkun, misalnya memuat data pengguna
+        System.out.println("ID Akun diterima: " + idAkun);
+    }
 
     /**
      * Inisialisasi controller dan mengatur listener pada field pencarian.
