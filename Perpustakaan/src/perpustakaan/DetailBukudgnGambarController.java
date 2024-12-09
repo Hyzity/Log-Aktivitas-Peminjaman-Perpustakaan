@@ -175,20 +175,54 @@ public class DetailBukudgnGambarController {
         return card;
     }
 
-    /**
-     * Menangani aksi tombol pinjam buku.
-     *
-     * @param idBuku ID buku yang akan dipinjam
-     */
-    void handleBorrowBook(ActionEvent event, int buku) throws IOException {
-        // Memuat halaman utama
-        Parent mainPage = FXMLLoader.load(getClass().getResource("/main/mainMenu.fxml"));
+    private void handleBorrowBook(int idBuku) {
+        try {
+            // Muat file FXML untuk popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/perpustakaan/detail_pinjam.fxml"));
+            Parent root = loader.load();
 
-        // Mendapatkan stage yang aktif dan mengubah scene
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        Scene scene = new Scene(mainPage);
-        stage.setScene(scene);
-        stage.show();
+            // Ambil controller detail_pinjam.fxml
+            Detail_pinjamController controller = loader.getController();
+
+            // Ambil data buku dari database
+            Buku buku = getBukuById(idBuku);
+            if (buku != null) {
+                // Kirim data buku ke controller
+                controller.setBuku(buku);
+
+                // Buat stage baru untuk popup
+                Stage stage = new Stage();
+                stage.setTitle("Detail Buku");
+                stage.setScene(new Scene(root));
+                stage.initOwner(tilePane.getScene().getWindow()); // Set pemilik stage utama
+                stage.show();
+            } else {
+                System.out.println("Buku tidak ditemukan.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+// Metode untuk mengambil data buku dari database
+    private Buku getBukuById(int idBuku) {
+        String query = "SELECT id_buku, nama_buku, penulis, tahun_terbit FROM buku WHERE id_buku = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, idBuku);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Buku(
+                            rs.getInt("id_buku"),
+                            rs.getString("nama_buku"),
+                            rs.getString("penulis"),
+                            rs.getInt("tahun_terbit")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @FXML
