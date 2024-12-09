@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainMenuController">
+    <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20;" prefWidth="600">
+        <Label text="Kategori Buku" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <TilePane fx:id="tilePane" hgap="10" vgap="10" style="-fx-padding: 20;" />
+    </VBox>
+</AnchorPane>
