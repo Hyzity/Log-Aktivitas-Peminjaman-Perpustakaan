@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
 import main.MainMenuController;
 
 /**
@@ -101,10 +102,11 @@ public class LogintesController {
 
         // Logika khusus untuk admin
         if (username.equals("admin") && password.equals("admin123")) {
-            label.setText("Login Berhasil sebagai Admin!");
+            // Show success pop-up
+            showSuccessAlert("Admin Login", "Login berhasil sebagai Admin!");
 
             // Navigasi ke halaman admin
-            navigateToMainPage(-1); // Kirim -1 sebagai ID untuk admin
+            navigateToAdminPage(-1);
             return;
         }
 
@@ -160,6 +162,24 @@ public class LogintesController {
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setScene(new Scene(mainPage));
         stage.show();
+    }
+    
+    // Add this new method for admin navigation
+    private void navigateToAdminPage(int i) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Admin.fxml"));
+        Parent adminPage = loader.load();
+
+        Stage stage = (Stage) usernameField.getScene().getWindow();
+        stage.setScene(new Scene(adminPage));
+        stage.show();
+    }
+
+    private void showSuccessAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 }
