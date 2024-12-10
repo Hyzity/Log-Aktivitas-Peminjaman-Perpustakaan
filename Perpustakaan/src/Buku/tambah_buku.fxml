@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Buku.Tambah_bukuController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label fx:id="titleLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <GridPane vgap="10" hgap="10">
+        <Label text="ID Kategori:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="idKategoriField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Nama Buku:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="namaBukuField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Penulis:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="penulisField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Tahun Terbit:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="tahunTerbitField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Gambar:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button text="Pilih Gambar" onAction="#handlePilihGambar"/>
+            <Label fx:id="selectedImageLabel" text="Tidak ada gambar dipilih"/>
+        </HBox>
+        <ImageView fx:id="bookImageView" fitHeight="150.0" fitWidth="200.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Tambah" onAction="#handleTambahBuku"/>
+        <Button text="Edit" onAction="#handleEditBuku"/>
+        <Button text="Hapus" onAction="#handleHapusBuku"/>
+        <Button text="Batal" onAction="#handleBatal"/>
+    </HBox>
+
+    <TableView fx:id="bukuTableView" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idBukuColumn" text="ID Buku"/>
+            <TableColumn fx:id="namaBukuColumn" text="Nama Buku"/>
+            <TableColumn fx:id="penulisColumn" text="Penulis"/>
+            <TableColumn fx:id="tahunTerbitColumn" text="Tahun Terbit"/>
+        </columns>
+    </TableView>
+</VBox>
