@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.MainMenuController;
 
 /**
  * FXML Controller class
@@ -177,13 +178,13 @@ public class DetailBukudgnGambarController {
 
         Button borrowButton = new Button("Pinjam");
         borrowButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        borrowButton.setOnAction((ActionEvent e) -> handleBorrowBook(idBuku));
+        borrowButton.setOnAction((ActionEvent e) -> handleBorrowBook(idBuku, idAkun)); // Pass id_akun
 
         card.getChildren().addAll(imageView, titleLabel, borrowButton);
         return card;
     }
 
-    private void handleBorrowBook(int idBuku) {
+    private void handleBorrowBook(int idBuku, int idAkun) {
         try {
             // Muat file FXML untuk popup
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/perpustakaan/detail_pinjam.fxml"));
@@ -195,8 +196,9 @@ public class DetailBukudgnGambarController {
             // Ambil data buku dari database
             Buku buku = getBukuById(idBuku);
             if (buku != null) {
-                // Kirim data buku ke controller
+                // Kirim data buku dan id_akun ke controller
                 controller.setBuku(buku);
+                controller.setIdAkun(idAkun);
 
                 // Buat stage baru untuk popup
                 Stage stage = new Stage();
@@ -238,8 +240,15 @@ public class DetailBukudgnGambarController {
 
     @FXML
     void handleBackToMainPage(ActionEvent event) throws IOException {
-        // Memuat halaman utama
-        Parent mainPage = FXMLLoader.load(getClass().getResource("/main/mainMenu.fxml"));
+        // Load FXML halaman utama
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/mainMenu.fxml"));
+        Parent mainPage = loader.load();
+
+        // Mengambil controller dari halaman utama
+        MainMenuController controller = loader.getController();
+
+        // Pass id_akun ke halaman utama
+        controller.setIdAkun(this.idAkun);
 
         // Mendapatkan stage yang aktif dan mengubah scene
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -247,4 +256,5 @@ public class DetailBukudgnGambarController {
         stage.setScene(scene);
         stage.show();
     }
+
 }

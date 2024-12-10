@@ -13,12 +13,16 @@ public class Buku {
     private String namaBuku;
     private String penulis;
     private int tahunTerbit;
+    private String nama;
 
     public Buku(int idBuku, String namaBuku, String penulis, int tahunTerbit) {
         this.idBuku = idBuku;
         this.namaBuku = namaBuku;
         this.penulis = penulis;
         this.tahunTerbit = tahunTerbit;
+    }
+    public void setNamaAkun(String nama) {
+        this.nama = nama;
     }
 
     public int getIdBuku() {
@@ -35,5 +39,8 @@ public class Buku {
 
     public int getTahunTerbit() {
         return tahunTerbit;
+    }
+    public String getNamaAkun(){
+        return nama;
     }
 }
