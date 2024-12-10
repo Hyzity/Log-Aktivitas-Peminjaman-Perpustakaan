@@ -62,7 +62,7 @@
                <Insets left="11.0" right="10.0" />
             </HBox.margin>
          </Button>
-          <Button style="-fx-background-color: #09F400;" text="OK">
+          <Button onAction="#handleAddTransaction" style="-fx-background-color: #09F400;" text="OK">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
