@@ -1,15 +1,11 @@
 package perpustakaan;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
@@ -18,7 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
+import javafx.scene.layout.Priority;
 import main.MainMenuController;
+import java.io.IOException;
 
 /**
  * FXML Controller class
@@ -169,12 +168,13 @@ public class DetailBukudgnGambarController {
         try {
             imageView.setImage(new Image(getClass().getResource(pathGambar).toExternalForm()));
         } catch (NullPointerException e) {
-            // Jika gambar tidak ditemukan, gunakan gambar default
             imageView.setImage(new Image(getClass().getResource("/resources/default.jpg").toExternalForm()));
         }
 
         Label titleLabel = new Label(namaBuku);
-        titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+        titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;");
+        titleLabel.setWrapText(true);
+        titleLabel.setMaxWidth(140);
 
         Button borrowButton = new Button("Pinjam");
         borrowButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
