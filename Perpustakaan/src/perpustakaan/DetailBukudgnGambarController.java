@@ -18,6 +18,8 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.Priority;
 import main.MainMenuController;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FXML Controller class
@@ -56,12 +58,12 @@ public class DetailBukudgnGambarController {
 //        searchField.textProperty().addListener((observable, oldValue, newValue) -> loadBooks(newValue));
     }
 
-    public void setKategoriId(int kategoriId) {
+    public void setKategoriId(int kategoriId, int idAkun) {
         this.kategoriId = kategoriId;
 
         setJudulKategori(kategoriId);
         // Misalnya, kita ingin memuat buku berdasarkan kategori yang diterima
-        loadBooks(kategoriId);
+        loadBooks(kategoriId, idAkun);
 
     }
 
@@ -99,31 +101,30 @@ public class DetailBukudgnGambarController {
 //            e.printStackTrace();
 //        }
 //    }
-    private void loadBooks(int kategoriId) {
-        tilePane.getChildren().clear();
-
-        String query = "SELECT * "
-                + "FROM Buku b "
-                + "JOIN kategori_buku k ON b.id_kategori = k.id_kategori "
-                + "WHERE b.id_kategori = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, kategoriId);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    int idBuku = rs.getInt("id_buku");
-                    String namaBuku = rs.getString("nama_buku");
-                    String pathGambar = rs.getString("path_gambar");
-                    String namaKategori = rs.getString("nama_kategori");
-                    lblKategori.setText(namaKategori);
-
-                    tilePane.getChildren().add(createBookCard(idBuku, namaBuku, pathGambar));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+//    private void loadBooks(int kategoriId) {
+//        tilePane.getChildren().clear();
+//
+//        String query = "SELECT * "
+//                + "FROM Buku b "
+//                + "JOIN kategori_buku k ON b.id_kategori = k.id_kategori "
+//                + "WHERE b.id_kategori = ?";
+//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+//            stmt.setInt(1, kategoriId);
+//            try (ResultSet rs = stmt.executeQuery()) {
+//                while (rs.next()) {
+//                    int idBuku = rs.getInt("id_buku");
+//                    String namaBuku = rs.getString("nama_buku");
+//                    String pathGambar = rs.getString("path_gambar");
+//                    String namaKategori = rs.getString("nama_kategori");
+//                    lblKategori.setText(namaKategori);
+//
+//                    tilePane.getChildren().add(createBookCard(idBuku, namaBuku, pathGambar));
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
     private void setJudulKategori(int id_kategori) {
 
         String query = ""
@@ -158,30 +159,119 @@ public class DetailBukudgnGambarController {
      * @param pathGambar Path gambar dari database
      * @return VBox kartu buku
      */
-    private VBox createBookCard(int idBuku, String namaBuku, String pathGambar) {
-        VBox card = new VBox(3);
-        card.setStyle("-fx-padding: 5; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-alignment: center;");
+//    private VBox createBookCard(int idBuku, String namaBuku, String pathGambar) {
+//        VBox card = new VBox(3);
+//        card.setStyle("-fx-padding: 5; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-alignment: center;");
+//
+//        ImageView imageView = new ImageView();
+//        imageView.setFitHeight(10);
+//        imageView.setFitWidth(10);
+//        tilePane.setPrefColumns(5);
+//        try {
+//            imageView.setImage(new Image(getClass().getResource(pathGambar).toExternalForm()));
+//        } catch (NullPointerException e) {
+//            imageView.setImage(new Image(getClass().getResource("/resources/default.jpg").toExternalForm()));
+//        }
+//
+//        Label titleLabel = new Label(namaBuku);
+//        titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;");
+//        titleLabel.setWrapText(true);
+//        titleLabel.setMaxWidth(140);
+//
+//        Button borrowButton = new Button("Pinjam");
+//        borrowButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+//        borrowButton.setOnAction((ActionEvent e) -> handleBorrowBook(idBuku, idAkun)); // Pass id_akun
+//
+//        card.getChildren().addAll(imageView, titleLabel, borrowButton);
+//        return card;
+//    }
+    private TilePane createBookCards(List<Book> books, int idAkun) {
+        TilePane tilePane = new TilePane();
+        tilePane.setHgap(10); // Jarak horizontal antar kartu
+        tilePane.setVgap(10); // Jarak vertikal antar kartu
+        tilePane.setPrefColumns(5); // Maksimal 5 kartu per baris
+        tilePane.setTileAlignment(Pos.TOP_CENTER); // Penyelarasan kartu
 
-        ImageView imageView = new ImageView();
-        imageView.setFitHeight(100);
-        imageView.setFitWidth(100);
-        try {
-            imageView.setImage(new Image(getClass().getResource(pathGambar).toExternalForm()));
-        } catch (NullPointerException e) {
-            imageView.setImage(new Image(getClass().getResource("/resources/default.jpg").toExternalForm()));
+        for (Book book : books) {
+            VBox card = new VBox(3);
+            card.setStyle("-fx-padding: 5; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-alignment: center;");
+
+            ImageView imageView = new ImageView();
+            imageView.setFitHeight(80); // Lebih kecil untuk tampilan yang ringkas
+            imageView.setFitWidth(80);
+            try {
+                imageView.setImage(new Image(getClass().getResource(book.getPathGambar()).toExternalForm()));
+            } catch (NullPointerException e) {
+                imageView.setImage(new Image(getClass().getResource("/resources/default.jpg").toExternalForm()));
+            }
+
+            Label titleLabel = new Label(book.getNamaBuku());
+            titleLabel.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-wrap-text: true; -fx-alignment: center;");
+            titleLabel.setWrapText(true);
+            titleLabel.setMaxWidth(90);
+
+            Button borrowButton = new Button("Pinjam");
+            borrowButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+            borrowButton.setOnAction((ActionEvent e) -> handleBorrowBook(book.getIdBuku(), idAkun)); // Pass id_akun
+
+            card.getChildren().addAll(imageView, titleLabel, borrowButton);
+            tilePane.getChildren().add(card);
         }
 
-        Label titleLabel = new Label(namaBuku);
-        titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;");
-        titleLabel.setWrapText(true);
-        titleLabel.setMaxWidth(140);
+        return tilePane;
+    }
 
-        Button borrowButton = new Button("Pinjam");
-        borrowButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        borrowButton.setOnAction((ActionEvent e) -> handleBorrowBook(idBuku, idAkun)); // Pass id_akun
+    private void loadBooks(int kategoriId, int idAkun) {
+        tilePane.getChildren().clear();
 
-        card.getChildren().addAll(imageView, titleLabel, borrowButton);
-        return card;
+        String query = "SELECT * "
+                + "FROM Buku b "
+                + "JOIN kategori_buku k ON b.id_kategori = k.id_kategori "
+                + "WHERE b.id_kategori = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, kategoriId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Book> books = new ArrayList<>();
+                while (rs.next()) {
+                    int idBuku = rs.getInt("id_buku");
+                    String namaBuku = rs.getString("nama_buku");
+                    String pathGambar = rs.getString("path_gambar");
+                    String namaKategori = rs.getString("nama_kategori");
+                    lblKategori.setText(namaKategori);
+
+                    books.add(new Book(idBuku, namaBuku, pathGambar));
+                }
+                tilePane.getChildren().add(createBookCards(books, idAkun));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+// Model Book untuk mendukung parameter pada metode
+    public class Book {
+
+        private int idBuku;
+        private String namaBuku;
+        private String pathGambar;
+
+        public Book(int idBuku, String namaBuku, String pathGambar) {
+            this.idBuku = idBuku;
+            this.namaBuku = namaBuku;
+            this.pathGambar = pathGambar;
+        }
+
+        public int getIdBuku() {
+            return idBuku;
+        }
+
+        public String getNamaBuku() {
+            return namaBuku;
+        }
+
+        public String getPathGambar() {
+            return pathGambar;
+        }
     }
 
     private void handleBorrowBook(int idBuku, int idAkun) {

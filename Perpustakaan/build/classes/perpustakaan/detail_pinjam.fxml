@@ -54,7 +54,7 @@
    </VBox>
    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <Button mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #F26963;" text="Kembali">
+         <Button fx:id="kembaliButton" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #F26963;" text="Kembali">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
@@ -62,7 +62,7 @@
                <Insets left="11.0" right="10.0" />
             </HBox.margin>
          </Button>
-          <Button onAction="#handleAddTransaction" style="-fx-background-color: #09F400;" text="OK">
+          <Button fx:id="okButton" onAction="#handleAddTransaction" style="-fx-background-color: #09F400;" text="OK" textFill="#c7b100">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>

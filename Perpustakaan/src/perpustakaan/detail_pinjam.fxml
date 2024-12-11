@@ -62,7 +62,7 @@
                <Insets left="11.0" right="10.0" />
             </HBox.margin>
          </Button>
-          <Button fx:id="okButton" onAction="#handleOkButton" style="-fx-background-color: #09F400;" text="OK" textFill="#c7b100">
+          <Button fx:id="okButton" onAction="#handleAddTransaction" style="-fx-background-color: #09F400;" text="OK" textFill="#c7b100">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>

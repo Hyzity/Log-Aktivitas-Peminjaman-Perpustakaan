@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -32,20 +31,12 @@
                         <TilePane hgap="10" vgap="10">
                             <children>
                                 <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
-                                    <ImageView fitHeight="80" fitWidth="80">
-                                        <image>
-                                            <Image url="@/resources/fiction.jpg" />
-                                        </image>
-                                    </ImageView>
+                                    <ImageView fitHeight="80" fitWidth="80" />
                                     <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Buku Fiksi 1" />
                                     <Button style="-fx-background-color: #FF5722; -fx-text-fill: white;" text="Pinjam" />
                                 </VBox>
                                 <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
-                                    <ImageView fitHeight="80" fitWidth="80">
-                                        <image>
-                                            <Image url="@/resources/fiction.jpg" />
-                                        </image>
-                                    </ImageView>
+                                    <ImageView fitHeight="80" fitWidth="80" />
                                     <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Buku Fiksi 2" />
                                     <Button style="-fx-background-color: #FF5722; -fx-text-fill: white;" text="Pinjam" />
                                 </VBox>
@@ -59,20 +50,12 @@
                         <TilePane hgap="10" vgap="10">
                             <children>
                                 <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
-                                    <ImageView fitHeight="80" fitWidth="80">
-                                        <image>
-                                            <Image url="@/resources/science.jpg" />
-                                        </image>
-                                    </ImageView>
+                                    <ImageView fitHeight="80" fitWidth="80" />
                                     <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Buku Sains 1" />
                                     <Button style="-fx-background-color: #FF5722; -fx-text-fill: white;" text="Pinjam" />
                                 </VBox>
                                 <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #CCCCCC; -fx-border-width: 1;">
-                                    <ImageView fitHeight="80" fitWidth="80">
-                                        <image>
-                                            <Image url="@/resources/science.jpg" />
-                                        </image>
-                                    </ImageView>
+                                    <ImageView fitHeight="80" fitWidth="80" />
                                     <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Buku Sains 2" />
                                     <Button style="-fx-background-color: #FF5722; -fx-text-fill: white;" text="Pinjam" />
                                 </VBox>

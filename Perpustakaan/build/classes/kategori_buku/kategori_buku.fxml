@@ -1,0 +1,30 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kategori_buku.Kategori_bukuController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Manajemen Kategori Buku" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Nama Kategori:"/>
+        <TextField fx:id="kategoriTextField" promptText="Masukkan nama kategori"/>
+        <Button text="Tambah Kategori" onAction="#handleTambahKategori"/>
+    </HBox>
+
+    <TableView fx:id="kategoriTableView" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idKategoriColumn" text="ID Kategori"/>
+            <TableColumn fx:id="namaKategoriColumn" text="Nama Kategori"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Edit" onAction="#handleEditKategori"/>
+        <Button text="Hapus" onAction="#handleHapusKategori"/>
+    </HBox>
+</VBox>
+

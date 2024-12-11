@@ -22,6 +22,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.event.ActionEvent;
+import javafx.scene.Parent;
 import perpustakaan.DetailBukudgnGambarController;
 
 /**
@@ -38,6 +40,8 @@ public class MainMenuController {
     public void initialize() {
         loadCategories();
     }
+    @FXML
+    private Button logPeminjamanButton;
 
     private int idAkun;
 
@@ -90,7 +94,7 @@ public class MainMenuController {
 
             // Mengirimkan idKategori dan idAkun ke controller detail
             DetailBukudgnGambarController controller = loader.getController();
-            controller.setKategoriId(idKategori);
+            controller.setKategoriId(idKategori, idAkun);
             controller.setIdAkun(idAkun);
 
             stage.setScene(scene);
@@ -98,6 +102,40 @@ public class MainMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void handleLogPeminjaman(ActionEvent event) throws IOException {
+        // Memuat file FXML untuk halaman log peminjaman
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/log/logPeminjamanUser.fxml"));
+        Parent root = loader.load();
+
+        // Mengambil controller untuk logPeminjamanUser.fxml
+        log.LogPeminjamanUserController controller = loader.getController();
+
+        // Mengirimkan ID akun ke controller halaman log peminjaman
+        controller.setIdAkun(idAkun);
+
+        // Mengatur scene dan menampilkan halaman log peminjaman
+        Stage stage = (Stage) logPeminjamanButton.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private Button logoutButton; // Tombol untuk logout
+
+    @FXML
+    void handleLogout(ActionEvent event) throws IOException {
+        // Memuat file FXML untuk halaman Home
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/homepage/Home.fxml"));
+        Parent root = loader.load();
+
+        // Mengatur scene ke halaman Home
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
