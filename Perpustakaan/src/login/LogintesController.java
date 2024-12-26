@@ -58,37 +58,6 @@ public class LogintesController {
         }
     }
 
-    // Handle login action
-//    @FXML
-//void handleLogin(ActionEvent event) throws IOException {
-//    String username = usernameField.getText().trim();
-//    String password = passwordField.getText().trim();
-//
-//    // Validasi jika field kosong
-//    if (username.isEmpty() || password.isEmpty()) {
-//        label.setText("*Username dan Password tidak boleh kosong!");
-//        return;
-//    }
-//
-//    // Logika khusus untuk admin
-//    if (username.equals("admin") && password.equals("admin123")) {
-//        label.setText("Login Berhasil sebagai Admin!");
-//
-//        // Navigasi ke halaman admin
-//        navigateToMainPage();
-//        return;
-//    }
-//
-//    // Cek username dan password dari database
-//    if (authenticateUser(username, password)) {
-//        label.setText("Login Berhasil!");
-//
-//        // Navigasi ke halaman utama
-//        navigateToMainPage();
-//    } else {
-//        label.setText("Username atau Password salah.");
-//    }
-//}
     @FXML
     void handleLogin(ActionEvent event) throws IOException {
         String username = usernameField.getText().trim();
@@ -106,7 +75,7 @@ public class LogintesController {
             showSuccessAlert("Admin Login", "Login berhasil sebagai Admin!");
 
             // Navigasi ke halaman admin
-            navigateToAdminPage(-1);
+            navigateToAdminPage();
             return;
         }
 
@@ -163,9 +132,9 @@ public class LogintesController {
         stage.setScene(new Scene(mainPage));
         stage.show();
     }
-    
+
     // Add this new method for admin navigation
-    private void navigateToAdminPage(int i) throws IOException {
+    private void navigateToAdminPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Admin.fxml"));
         Parent adminPage = loader.load();
 
@@ -183,3 +152,4 @@ public class LogintesController {
     }
 
 }
+

@@ -4,6 +4,7 @@
  */
 package Buku;
 
+import kategori_buku.*;
 import Register.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ import java.sql.*;
 public class dbConnection {
     private static final Logger logger = Logger.getLogger(dbConnection.class.getName());
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/perpustakaan?user=root";
+    private static final String DB_CONNECTION = "jdbc:mysql://localhost/perpustakaan";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 		

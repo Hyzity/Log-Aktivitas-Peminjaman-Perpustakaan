@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/perpustakaan/Buku.java</file>
-            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/perpustakaan/Detail_pinjamController.java</file>
-            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/main/dbConnection.java</file>
-            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/perpustakaan/DetailBukudgnGambar.fxml</file>
-            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/perpustakaan/dbConnection.java</file>
-            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/perpustakaan/DetailBukudgnGambarController.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Admin/AdminController.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/kategori_buku/Kategori_bukuController.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Transaksi/transaksi_Controller.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Transaksi/admin_peminjaman.fxml</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Buku/Pilih_kategori_bukuController.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/main/mainMenu.fxml</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Transaksi/dbConnection.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Transaksi/LogPeminjaman.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/Pengumuman/Pengumuman_Controller.java</file>
+            <file>file:/C:/Users/noelt/Documents/GitHub/Log-Aktivitas-Peminjaman-Perpustakaan/Perpustakaan/src/login/LogintesController.java</file>
         </group>
     </open-files>
 </project-private>

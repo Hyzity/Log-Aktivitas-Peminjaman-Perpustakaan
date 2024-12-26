@@ -14,7 +14,7 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="26.0" layoutY="35.0" text="Formulir Pendaftaran">
+            <Label layoutX="26.0" layoutY="35.0" text="Formulir Pendaftaran" textFill="#2e933c">
                <font>
                   <Font name="Impact" size="24.0" />
                </font>
@@ -24,14 +24,14 @@
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="25.0" layoutY="261.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRegister" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #0598ff;" text="Daftar" textFill="WHITE">
+            <Button layoutX="26.0" layoutY="262.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRegister" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #81C14B;" text="Daftar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Hyperlink layoutX="25.0" layoutY="320.0" onAction="#masuk" text="Punya akun? Masuk" />
-            <TextField fx:id="daftarUsername" layoutX="25.0" layoutY="138.0" prefHeight="40.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: null; -fx-border-color: #0598ff;" />
-            <PasswordField fx:id="daftarPassword" layoutX="25.0" layoutY="186.0" prefHeight="40.0" prefWidth="300.0" promptText="Kata Sandi" style="-fx-background-color: null; -fx-border-color: #0598ff;" />
+            <Hyperlink layoutX="26.0" layoutY="320.0" onAction="#masuk" text="Punya akun? Masuk" textFill="#2e933c" />
+            <TextField fx:id="daftarUsername" layoutX="26.0" layoutY="138.0" prefHeight="40.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: null; -fx-border-color: #204E4A;" />
+            <PasswordField fx:id="daftarPassword" layoutX="26.0" layoutY="185.0" prefHeight="40.0" prefWidth="300.0" promptText="Kata Sandi" style="-fx-background-color: null; -fx-border-color: #204E4A;" />
             <Label fx:id="label" layoutX="25.0" layoutY="230.0" prefHeight="20.0" prefWidth="299.0" text="" textFill="RED">
                <font>
                   <Font size="11.0" />
@@ -40,14 +40,14 @@
       </AnchorPane>
    </right>
    <left>
-      <AnchorPane prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: ECBA82;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" layoutX="116.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library ">
+            <Text fill="#81c14b" layoutX="116.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library ">
                <font>
                   <Font name="Ebrima Bold" size="20.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="116.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selamat datang di">
+            <Text fill="#81c14b" layoutX="116.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-stroke: #000000;" text="Selamat datang di">
                <font>
                   <Font name="Ebrima Bold" size="12.0" />
                </font>

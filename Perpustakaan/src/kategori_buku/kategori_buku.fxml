@@ -1,30 +1,124 @@
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kategori_buku.Kategori_bukuController">
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kategori_buku.Kategori_bukuController">
 
-    <Label text="Manajemen Kategori Buku" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <!-- Sidebar -->
+    <left>
+        <VBox prefHeight="600.0" prefWidth="200.0" spacing="10" style="-fx-background-color: #2c3e50;">
+            <children>
+                <!-- Logo -->
+                <ImageView fitHeight="135.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 20;">
+                    <image>
+                        <Image url="@../images/library_logo.png" />
+                    </image>
+                </ImageView>
+                <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleBerandaAdmin" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Beranda" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                    </font>
+                </Button>
+                <Button onAction="#handleTambahBuku" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Buku">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                    </font>
+                </Button>
 
-    <HBox spacing="10" alignment="CENTER">
-        <Label text="Nama Kategori:"/>
-        <TextField fx:id="kategoriTextField" promptText="Masukkan nama kategori"/>
-        <Button text="Tambah Kategori" onAction="#handleTambahKategori"/>
-    </HBox>
+                <!-- Menu Items -->
+                <Label text="Kategori" textFill="WHITE">
+                    <VBox.margin>
+                        <Insets left="30.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook Italic" size="36.0" />
+                    </font>
+                </Label>
+                <Button onAction="#handleTambahPengumuman" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Pengumuman">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook Italic" size="18.0" />
+                    </font>
+                </Button>
+            <Button layoutX="35.0" layoutY="302.0" onAction="#handleDetailRequest" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Peminjaman">
+                <VBox.margin>
+                    <Insets left="25.0" />
+                </VBox.margin>               
+                <font>
+                  <Font name="Century Schoolbook" size="18.0" />
+               </font>
+            </Button>
+            </children>
+        </VBox>
+    </left>
 
-    <TableView fx:id="kategoriTableView" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn fx:id="idKategoriColumn" text="ID Kategori"/>
-            <TableColumn fx:id="namaKategoriColumn" text="Nama Kategori"/>
-        </columns>
-    </TableView>
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-background-color: #34495e; -fx-padding: 10;">
+            <children>
+                <Label style="-fx-text-fill: #ecf0f1; -fx-font-size: 20px;" text="Dashboard Admin - Kategori" />
+                <Button fx:id="logoutButton" style="-fx-background-color: #e74c3c; -fx-text-fill: #ffffff;" text="Logout" />
+            </children>
+        </HBox>
+    </top>
 
-    <HBox spacing="10" alignment="CENTER">
-        <Button text="Edit" onAction="#handleEditKategori"/>
-        <Button text="Hapus" onAction="#handleHapusKategori"/>
-    </HBox>
-</VBox>
+    <!-- Main Content -->
+    <center>
+        <AnchorPane fx:id="centerPane" prefHeight="600" prefWidth="800" style="-fx-background-color: #ffffff;">
+            <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="802.0" spacing="20" style="-fx-padding: 20;">
+                <children>
+                    <!-- Statistik -->
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Statistik Kategori" />
+                    <HBox spacing="20">
+                        <children>
+                            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #27ae60; -fx-border-width: 2; -fx-padding: 10;">
+                                <Label style="-fx-font-size: 14px;" text="Jumlah Kategori" />
+                                <Label fx:id="jumlahKategori" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="0" />
+                            </VBox>
+                        </children>
+                    </HBox>
 
+                    <!-- Form Kategori -->
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Tambah Kategori" />
+                    <HBox spacing="10">
+                        <children>
+                            <TextField fx:id="kategoriTextField" prefWidth="200.0" promptText="Nama Kategori" />
+                            <Button onAction="#handleTambahKategori" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Tambah" />
+                            <Button onAction="#handleHapusKategori" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Hapus" />
+                     <Button onAction="#handleEditKategori" style="-fx-background-color: #EEA73F; -fx-text-fill: white;" text="Edit" />
+                        </children>
+                    </HBox>
+
+                    <!-- Daftar Kategori -->
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Daftar Kategori" />
+                    <TableView fx:id="kategoriTableView" prefHeight="242.0" prefWidth="735.0">
+                        <columns>
+                            <TableColumn fx:id="idKategoriColumn" prefWidth="250.0" text="ID Kategori" />
+                            <TableColumn fx:id="namaKategoriColumn" prefWidth="500.0" text="Nama Kategori" />
+                        </columns>
+                    </TableView>
+                </children>
+            </VBox>
+        </AnchorPane>
+    </center>
+</BorderPane>

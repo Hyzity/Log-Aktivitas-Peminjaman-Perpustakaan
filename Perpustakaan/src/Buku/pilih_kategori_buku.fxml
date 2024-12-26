@@ -1,17 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Buku.Pilih_kategori_bukuController">
-    <content>
-        <VBox spacing="20" alignment="CENTER">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
-            <Label text="Pilih Kategori Buku" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-            <FlowPane fx:id="kategoriContainer" hgap="10" vgap="10" alignment="CENTER"/>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Buku.Pilih_kategori_bukuController">
+    <left>
+        <VBox prefWidth="202.0" spacing="10" style="-fx-background-color: #2c3e50;">
+            <children>
+                <ImageView fitHeight="135.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 20;">
+                    <image>
+                        <Image url="@../images/library_logo.png" />
+                    </image>
+                </ImageView>
+                <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleBerandaAdmin" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Beranda" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                    </font>
+                </Button>
+                <Label text="Buku" textFill="WHITE">
+                    <VBox.margin>
+                        <Insets left="30.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook Italic" size="49.0" />
+                    </font>
+                </Label>
+                <Button fx:id="menuKategori" onAction="#handleTambahKategori" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Kategori">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                    </font>
+                </Button>
+                <Button onAction="#handleTambahPengumuman" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Pengumuman">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="menuPeminjaman" onAction="#handleDetailRequest" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1;" text="Peminjaman">
+                    <VBox.margin>
+                        <Insets left="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                    </font>
+                </Button>
+            </children>
         </VBox>
-    </content>
-</ScrollPane>
+    </left>
+    <top>
+        <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-background-color: #34495e; -fx-padding: 10;">
+            <children>
+                <Label fx:id="headerLabel" style="-fx-text-fill: #ecf0f1; -fx-font-size: 20px;" text="Pilih Kategori Buku" />
+                <Button fx:id="logoutButton" onAction="#handleLogout" style="-fx-background-color: #e74c3c; -fx-text-fill: #ffffff;" text="Logout" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <AnchorPane fx:id="centerAnchorPane" prefHeight="600.0" prefWidth="802.0">
+            <FlowPane fx:id="kategoriContainer" hgap="10" prefWrapLength="580" vgap="10">
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+            </FlowPane>
+        </AnchorPane>
+    </center>
+</BorderPane>
